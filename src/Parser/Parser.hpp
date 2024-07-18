@@ -25,11 +25,13 @@ class Parser {
         std::string jump();
         std::string currentCommand;
 
-    private:
+        bool isLCommand(std::string& command);
         bool isACommand(std::string& command);
         bool isCCommand(std::string& command);
-        bool isLCommand(std::string& command);
+
         std::string removeWhitespaces(std::string& str);
+    private:
+
         std::ifstream inputFile; 
 };
 
