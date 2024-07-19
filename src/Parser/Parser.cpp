@@ -60,6 +60,7 @@ bool Parser::isLCommand(std::string& command) {
 std::string Parser::dest() {
     std::vector<std::string> deststring{"null","M","D","MD","A","AM","AD","AMD"};
     std::vector<std::string>::iterator it;
+    currentCommand = removeWhitespaces(currentCommand);
     if (isCCommand(currentCommand)) {
        if ( currentCommand.find(";") != std::string::npos)  {
             return "null";
@@ -68,9 +69,7 @@ std::string Parser::dest() {
             std::size_t found = currentCommand.find("=");
             std::string s = currentCommand.substr(0,found);
             it = std::find(deststring.begin(), deststring.end(),s);
-            if (it == deststring.end()) {
-
-                std::cout << s << '\n';
+            if (it != deststring.end()) {
                 return removeWhitespaces(s);
 
             }
@@ -84,18 +83,19 @@ std::string Parser::dest() {
 
 
 std::string Parser::comp() {
-    std::vector<std::string> compstring{"0","1","-1","D","A","!D","!A","-D","-A","D+1","D-1","A+1","A-1","D+A","D-A","A-D","D&A","D|A","M","!M","-M","M+1","M-1","D+M","D-M","M-D","D&M","D|M"};
+    std::vector<std::string> compstring{"0","1","-1","D","A","!D","!A","-D","-A","D+1","D-1","A+1","A-1","D+A","D-A","A-D","D&A","D|A","M","!M","-M","M+1","M-1","D+M","D-M","M-D","D&M","D|M","test"};
     std::vector<std::string>::iterator it;
 
     if (isCCommand(currentCommand) == 1) {
 
         std::size_t comment = currentCommand.find('/');
         currentCommand = currentCommand.substr(0,comment) ;
+        currentCommand = removeWhitespaces(currentCommand);
         if (currentCommand.find('=') != std::string::npos) {
             std::size_t found = currentCommand.find("=");
             std::string s = currentCommand.substr(found+1,comment);
             it = std::find(compstring.begin(),compstring.end(),s);
-            if (it != compstring.begin()) {
+            if (it != compstring.end()) {
                 return removeWhitespaces(s); 
 
             }
@@ -103,7 +103,7 @@ std::string Parser::comp() {
             size_t found = currentCommand.find(";");
             std::string s = currentCommand.substr(0,found);
             it = std::find(compstring.begin(),compstring.end(),s);
-            if (it == compstring.end()) {
+            if (it != compstring.end()) {
                 return removeWhitespaces(s);
             }
               } 
@@ -112,14 +112,15 @@ std::string Parser::comp() {
 }
 
 std::string Parser::jump()  {
-    std::vector<std::string> jumpstring{"null","JGT","JEQ","JGE","JLT","JNE","JLE","JMP"};
+    std::vector<std::string> jumpstring{"null","JGT","JEQ","JGE","JLT","JNE","JLE","JMP","test"};
     std::vector<std::string>::iterator it;
+    currentCommand = removeWhitespaces(currentCommand);
     if (isCCommand(currentCommand) == 1) {
         if (currentCommand.find(";") != std::string::npos) {
             size_t found = currentCommand.find(";");
             std::string s = currentCommand.substr(found+1);
             it = std::find(jumpstring.begin(),jumpstring.end(),s); 
-        if (it == jumpstring.end()) {
+        if (it != jumpstring.end()) {
             return removeWhitespaces(s);
         }
     }

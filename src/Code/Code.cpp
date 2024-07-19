@@ -7,7 +7,6 @@
 
 std::string Code::dest(std::string &mnemonic)
 {
-    // std::cout << mnemonic;
     std::unordered_map<std::string, std::string> destMap = {
         {"null", "000"},
         {"M", "001"},
