@@ -1,6 +1,6 @@
 CC=g++ # compiler to use
 CXXFLAGS= -Wall -std=c++11 # compiler flags
-TARGET= main
+TARGET= assembler
 SRCS= src/main.cpp src/Parser/Parser.cpp src/Code/Code.cpp src/SymbolTable/SymbolTable.cpp
 OBJS= $(SRCS:.cpp=.o) # converting to obj file
 
