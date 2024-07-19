@@ -15,8 +15,8 @@ addresses.
 ## Compile & Run
 #### Compile
 ```
-git clone https://github.com/TheDevire/Hack-Assembler.git
-cd Hack-Assembler
+git clone https://github.com/TheDevire/Hassembler.git
+cd Hassembler
 make assembler
 ```
 #### Run 
